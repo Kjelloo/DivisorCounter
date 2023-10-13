@@ -14,13 +14,5 @@ pipeline{
                 sh "docker compose up -d"
             }
         }
-       // stage("Deliver") {
-       //     steps {
-       //         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
-       //             sh "docker login -u ${username} -p ${password}"
-       //             sh "docker compose push"
-       //         }
-       //     }
-       // }
     }
 }

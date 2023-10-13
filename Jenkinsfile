@@ -1,4 +1,4 @@
-pipeline{
+pipeline {
     agent any
     triggers {
         pollSCM("* * * * *")
@@ -6,12 +6,20 @@ pipeline{
     stages {
         stage("Build") {
             steps {
-                sh "docker compose up -d"
+                script {
+                    // Use the correct 'docker-compose' command on Windows
+                    def dockerComposeCommand = isUnix() ? 'docker-compose' : 'docker-compose.exe'
+                    sh "${dockerComposeCommand} up -d"
+                }
             }
         }
         stage("Run") {
             steps {
-                sh "docker compose up -d"
+                script {
+                    // Use the correct 'docker-compose' command on Windows
+                    def dockerComposeCommand = isUnix() ? 'docker-compose' : 'docker-compose.exe'
+                    sh "${dockerComposeCommand} up -d"
+                }
             }
         }
     }

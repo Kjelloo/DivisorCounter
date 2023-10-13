@@ -8,7 +8,7 @@ pipeline {
             steps {
                 script {
                     // Use the correct 'docker-compose' command on Windows
-                    def dockerComposeCommand = isUnix() ? 'docker-compose' : 'docker-compose.exe'
+                    def dockerComposeCommand = isUnix() ? 'docker-compose' : 'docker compose'
                     sh "${dockerComposeCommand} up -d"
                 }
             }
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Use the correct 'docker-compose' command on Windows
-                    def dockerComposeCommand = isUnix() ? 'docker-compose' : 'docker-compose.exe'
+                    def dockerComposeCommand = isUnix() ? 'docker-compose' : 'docker compose'
                     sh "${dockerComposeCommand} up -d"
                 }
             }

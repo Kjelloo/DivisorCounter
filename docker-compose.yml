@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: DivisorCounter/Dockerfile
+    image: kjel0393/counter-service
   cache-service:
     build:
       context: .
@@ -13,6 +14,7 @@ services:
       - cache-db
     ports:
       - "5007:80"
+    image: kjel0393/cache-service
   cache-db:
     image: "mysql"
     environment:

@@ -11,8 +11,14 @@ pipeline {
         }
         stage("Run") {
             steps {
-                script {
-                    bat 'docker compose up -d'
+                bat 'docker compose up -d'
+            }
+        }
+        stage("Deploy") {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    bat 'docker login -u $username -p $password'
+                    bat 'docker compose push'
                 }
             }
         }

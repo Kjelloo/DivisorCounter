@@ -6,19 +6,13 @@ pipeline {
     stages {
         stage("Build") {
             steps {
-                script {
-                    // Use the correct 'docker-compose' command on Windows
-                    def dockerComposeCommand = isUnix() ? 'docker-compose' : 'docker compose'
-                    sh "${dockerComposeCommand} up -d"
-                }
+                sh 'docker compose build'
             }
         }
         stage("Run") {
             steps {
                 script {
-                    // Use the correct 'docker-compose' command on Windows
-                    def dockerComposeCommand = isUnix() ? 'docker-compose' : 'docker compose'
-                    sh "${dockerComposeCommand} up -d"
+                    sh 'docker compose up -d'
                 }
             }
         }
